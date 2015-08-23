@@ -1,0 +1,30 @@
+{
+  "name": "gig-textarea",
+  "version": "0.0.1",
+  "description": "Webcomponents to manage custom textarea",
+  "main": "gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gigigo-html5/gig-textarea.git"
+  },
+  "author": "Pedro José Peña Jerez <pedro.jose@gigigo.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gigigo-html5/gig-textarea/issues"
+  },
+  "devDependencies": {
+    "bower": "*",
+    "grunt": ">=0.4.0",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-conventional-changelog": "0.0.12",
+    "grunt-release": "~0.3.3",
+    "grunt-vulcanize": "^1.0.0",
+    "karma": "~0.8.0",
+    "grunt-contrib-copy": "~0.8.1"
+  },
+  "homepage": "https://github.com/gigigo-html5/gig-textarea"
+}
