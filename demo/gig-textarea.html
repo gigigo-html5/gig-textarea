@@ -1,3 +1,10 @@
+<!--
+ Webcomponents to manage custom textarea
+ @version v0.0.1 - 2015-08-27
+ @link https://github.com/gigigo-html5/gig-textarea
+ @author Pedro José Peña Jerez <pedro.jose@gigigo.com>
+ @license MIT License, http://www.opensource.org/licenses/MIT
+ -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="gig-textarea-editor-behavior.html">
 <link rel="import" href="../bower_components/iron-validatable-behavior/iron-validatable-behavior.html">
@@ -188,16 +195,18 @@
                         this.enableEditor();
                     }
 
+                    this._getValidity();
+
                 },
                 getClassList: function(errorMessage, resize) {
                     var classList = '';
 
                     if (errorMessage) {
-                        classList += 'error';
+                        classList += 'error ';
                     }
 
                     if (!resize) {
-                        classList += 'no-resize';
+                        classList += 'no-resize ';
                     }
 
                     return classList;
@@ -289,6 +298,7 @@
                     },
                     value: {
                         type: String,
+                        value: '',
                         notify: true
                     },
                     required: {

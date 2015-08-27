@@ -14,9 +14,9 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "~1.0.9",
     "ckeditor": "~4.5.3",
     "iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#~1.0.4",
-    "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#~1.0.4"
+    "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#~1.0.4",
+    "polymer": "~1.0.9"
   }
 }
