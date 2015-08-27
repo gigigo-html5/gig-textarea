@@ -1,5 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="gig-textarea-editor-behavior.html">
+<link rel="import" href="../iron-validatable-behavior/iron-validatable-behavior.html">
+<link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
 
 <dom-module id="gig-textarea">
 
@@ -163,8 +165,22 @@
             Polymer({
                 is: 'gig-textarea',
                 behaviors: [
-                    Polymer.GigTextareaEditorBehavior
+                    Polymer.GigTextareaEditorBehavior,
+                    Polymer.IronFormElementBehavior,
+                    Polymer.IronValidatableBehavior
                 ],
+                listeners: {
+                    'input': '_onInput'
+                },
+                _onInput: function() {
+                     this.value = this.$.textarea.value;
+                     if (this._getValidity()) {
+                         this.errorMessage = null;
+                     }
+                },
+                _getValidity: function() {
+                    return this.value != '';
+                },
                 ready: function() {
                     this._checkType();
 

@@ -29,8 +29,11 @@
                     var data = self.editorInstance.getData();
                     self.$.textarea.value = data;
                     self.value = data;
-
                     self._checkMaxLength();
+
+                    if (self._getValidity()) {
+                        self.errorMessage = null;
+                    }
                 });
 
                 editable.attachListener( editable, 'focus', function() {
@@ -42,6 +45,8 @@
                 });
 
                 editable.attachListener(editable, 'keydown', function() {
+
+
                     var str = self.editorInstance.getData().replace(/<[^>]*>|\s/g, '');
                     if (str.length > self.maxlength) {
                         self.editorInstance.setData(str.substring(0, self.maxlength));
