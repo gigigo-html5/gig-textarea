@@ -1,14 +1,9 @@
-<!--
- Webcomponents to manage custom textarea
- @version v0.0.1 - 2015-08-27
- @link https://github.com/gigigo-html5/gig-textarea
- @author Pedro José Peña Jerez <pedro.jose@gigigo.com>
- @license MIT License, http://www.opensource.org/licenses/MIT
- -->
+
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="gig-textarea-editor-behavior.html">
 <link rel="import" href="../bower_components/iron-validatable-behavior/iron-validatable-behavior.html">
 <link rel="import" href="../bower_components/iron-form-element-behavior/iron-form-element-behavior.html">
+<link rel="import" href="../bower_components/juicy-ace-editor/juicy-ace-editor.html">
 
 <dom-module id="gig-textarea">
 
@@ -132,6 +127,7 @@
 
     <template>
 
+        <div hidden$="[[code]]">
         <textarea id="textarea"
                rows=[[rows]]
                autocomplete$="[[autocomplete]]"
@@ -147,10 +143,22 @@
                readonly$="[[readonly]]"
                type="{{typeFormat}}"
                value="{{value}}"
+               hidden$="[[code]]"
                class$="[[getClassList(errorMessage, resize)]]"
                on-keyup="keyupEvent"
                on-focus="focusEvent"
                on-blur="blurEvent"></textarea>
+           </div>
+
+               <div hidden$="[[!code]]">
+                   <juicy-ace-editor
+                       id="code"
+                       theme="ace/theme/monokai"
+                       mode="ace/mode/html"
+                       on-change="_changeCode"
+                       style$="[[_getHeight(rows)]]">
+                   </juice-ace-editor>
+                </div>
 
         <template is="dom-if" if="[[errorMessage]]">
             <div class="error small">[[errorMessage]]</div>
@@ -178,6 +186,14 @@
                 ],
                 listeners: {
                     'input': '_onInput'
+                },
+                _changeCode: function(e) {
+                    this.value = this.$.code.value;
+
+                },
+                _getHeight: function(height) {
+                    return 'height: '+height * 50 + 'px';
+
                 },
                 _onInput: function() {
                      this.value = this.$.textarea.value;
@@ -291,6 +307,10 @@
                         this.typeFormat = this.type;
                     }
                 },
+                observerCode: function(value) {
+                    if (value) 
+                    this.$.code.value = this.value;
+                },
                 properties: {
                     name: {
                         type: String,
@@ -299,6 +319,10 @@
                     value: {
                         type: String,
                         value: '',
+                        notify: true,
+                    },
+                    placeholder: {
+                        type: String,
                         notify: true
                     },
                     required: {
@@ -345,6 +369,11 @@
                     lang: {
                         type: String,
                         value: 'es'
+                    },
+                    code: {
+                        type: Boolean,
+                        value: false,
+                        observer: 'observerCode'
                     }
                 }
             })
