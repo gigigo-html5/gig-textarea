@@ -1,6 +1,6 @@
 {
   "name": "gig-textarea",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Webcomponents to manage custom textarea",
   "main": "gruntfile.js",
   "scripts": {
