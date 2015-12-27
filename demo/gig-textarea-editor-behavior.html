@@ -1,9 +1,6 @@
 <link href="../bower_components/polymer/polymer.html">
-<script type="text/javascript">
-    var CKEDITOR_BASEPATH = location.pathname+'../bower_components/ckeditor/';
-</script>
-
-<script src="../bower_components/ckeditor/ckeditor.js"></script>
+<script src="../bower_components/quill/dist/quill.min.js"></script>
+<link rel="stylesheet" href="quill.snow.css">
 
 <script>
 
@@ -11,69 +8,23 @@
         enableEditor: function() {
             var self = this;
 
-            CKEDITOR.replace(this.$.textarea, {
-                language: self.lang,
-                uiColor: '#F5F5F5',
-                toolbarGroups : self.getConfig(),
-                height: self.editorHeight
+            self.editor = new Quill(this.querySelector('#editor'), {
+              modules: {
+                'toolbar': { container: this.querySelector('#toolbar') },
+                'link-tooltip': true
+              },
+              theme: 'snow'
             });
 
-            this.editorInstance = CKEDITOR.instances.textarea;
-            this._editorEvents();
+            self._editorEvents();
+
         },
         _editorEvents: function() {
             var self = this;
-            self.editorInstance.on( 'contentDom', function() {
-                var editable = self.editorInstance.editable();
-                editable.attachListener( editable, 'keyup', function() {
-                    var data = self.editorInstance.getData();
-                    self.$.textarea.value = data;
-                    self.value = data;
-                    self._checkMaxLength();
 
-                    if (self._getValidity()) {
-                        self.errorMessage = null;
-                    }
-                });
-
-                editable.attachListener( editable, 'focus', function() {
-                    self._checkMaxLength();
-                });
-
-                editable.attachListener( editable, 'blur', function() {
-                    self.maxLengthShow = false;
-                });
-
-                editable.attachListener(editable, 'keydown', function() {
-
-
-                    var str = self.editorInstance.getData().replace(/<[^>]*>|\s/g, '');
-                    if (str.length > self.maxlength) {
-                        self.editorInstance.setData(str.substring(0, self.maxlength));
-                    }
-                })
+            self.editor.on('text-change', function(delta, source) {
+                self.value = self.editor.getHTML();
             });
-        },
-        getConfig: function() {
-
-            switch(this.editorMode) {
-                case 'basic':
-                return [
-                		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-                		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-                		{ name: 'links', groups: [ 'links' ] },
-                		{ name: 'insert', groups: [ 'insert' ] },
-                		{ name: 'forms', groups: [ 'forms' ] },
-                		{ name: 'tools', groups: [ 'tools' ] },
-                		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-                		{ name: 'others', groups: [ 'others' ] },
-                		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-                		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-                		{ name: 'styles', groups: [ 'styles' ] },
-                		{ name: 'colors', groups: [ 'colors' ] }
-                	];
-                break;
-            }
         },
         properties: {
             editorMode: {
