@@ -199,8 +199,7 @@
 
     <template>
 
-        <template is="dom-if" if="[[editor]]" on-dom-change="editorReady">
-            <div class="text-editor">
+            <div class$="text-editor {{checkEditor(editor)}}">
                 <div id="toolbar">
                     <div class="btn-group">
                         <button class="ql-bold" title="Bold"><span class="fa fa-bold"></span></button>
@@ -304,7 +303,6 @@
                 <div id="editor"
                 style$="[[_getHeight(rows)]]"></div>
             </div>
-        </template>
 
         <div hidden$="[[code]]">
         <textarea id="textarea"
@@ -386,10 +384,15 @@
                 ready: function() {
                     this._checkType();
                     this._getValidity();
-
+                    this.editorReady();
                 },
                 hideEditor: function(editor) {
                     if (editor) {
+                        return 'hide';
+                    }
+                },
+                checkEditor: function(editor) {
+                    if (!editor) {
                         return 'hide';
                     }
                 },
@@ -498,12 +501,14 @@
                 properties: {
                     name: {
                         type: String,
-                        notify: true
+                        notify: true,
+                        reflectToAttribute: true
                     },
                     value: {
                         type: String,
                         value: '',
                         notify: true,
+                        reflectToAttribute: true
                     },
                     placeholder: {
                         type: String,
@@ -547,7 +552,7 @@
                         value: null
                     },
                     editor: {
-                        type: String,
+                        type: Boolean,
                         value: false
                     },
                     lang: {
