@@ -312,6 +312,7 @@
                required$="[[required]]"
                placeholder$="[[placeholder]]"
                readonly$="[[readonly]]"
+               disabled$="[[disabled]]"
                minlength$="[[minlength]]"
                maxlength$="[[maxlength]]"
                min$="[[min]]"
@@ -517,15 +518,21 @@
                     },
                     required: {
                         type: Boolean,
-                        value: false
+                        value: false,
+                        reflectToAttribute: true,
+                        notify: true
                     },
                     readonly: {
                         type: Boolean,
-                        value: false
+                        value: false,
+                        reflectToAttribute: true,
+                        notify: true
                     },
                     disabled: {
                         type: Boolean,
-                        value: false
+                        value: false,
+                        reflectToAttribute: true,
+                        notify: true
                     },
                     type: {
                         type: String,
