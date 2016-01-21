@@ -915,3 +915,15 @@
     font-size: inherit;
     background: transparent;
 }
+
+.ql-picker-item[data-value=center]:after, .ql-picker-label[data-value=center]:after  {
+    content: "\f037";
+}
+
+.ql-picker-item[data-value=right]:after, .ql-picker-label[data-value=right]:after  {
+    content: "\f038";
+}
+
+.ql-picker-item[data-value=justify]:after, .ql-picker-label[data-value=justify]:after  {
+    content: "\f039";
+}
