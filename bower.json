@@ -1,6 +1,6 @@
 {
   "name": "gig-textarea",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://github.com/gigigo-html5/gig-textarea",
   "authors": [
     "Pedro Peña <pedro.jose@gigigo.com>"
@@ -18,7 +18,6 @@
     "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#~1.0.4",
     "polymer": "~1.2.0",
     "juicy-ace-editor": "~1.1.1",
-    "quill": "~0.20.1",
-    "font-roboto": "~0.0.2"
+    "quill": "~0.20.1"
   }
 }

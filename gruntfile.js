@@ -29,14 +29,6 @@ module.exports = function(grunt) {
                 dest: '<%= pkg.name %>.html'
             }
         },
-        vulcanize: {
-            default: {
-                options: {},
-                files: {
-                    '<%= pkg.name %>.html': '<%= pkg.name %>.html'
-                }
-            }
-        },
         changelog: {
             options: {
                 dest: 'CHANGELOG.md',
@@ -110,7 +102,7 @@ module.exports = function(grunt) {
             src: ['*'],
             dest: ''
           },
-        },
+        }
     });
 
     // Load the plugin that provides the "jshint" task.
