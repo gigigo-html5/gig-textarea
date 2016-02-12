@@ -3,7 +3,7 @@
 <link rel="import" href="../bower_components/iron-validatable-behavior/iron-validatable-behavior.html">
 <link rel="import" href="../bower_components/iron-form-element-behavior/iron-form-element-behavior.html">
 <link rel="import" href="../bower_components/juicy-ace-editor/juicy-ace-editor.html">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 <dom-module id="gig-textarea">
 
@@ -128,7 +128,7 @@
             border: 1px solid #e4eaec;
             color: #76838f;
             border-radius: 3px;
-            background: white;
+            background: #c8cdd2;
         }
 
         .text-editor #toolbar {
@@ -329,7 +329,6 @@
                    <juicy-ace-editor
                        id="code"
                        theme="ace/theme/monokai"
-                       mode="ace/mode/html"
                        on-change="_changeCode"
                        style$="[[_getHeight(rows)]]">
                    </juice-ace-editor>
@@ -383,6 +382,12 @@
                     this._checkType();
                     this._getValidity();
                     this.editorReady();
+
+                    if (this.code) {
+                        this.$.code.editor.session.setMode(this.modeCode);
+                    }
+
+
                 },
                 hideEditor: function(editor) {
                     if (editor) {
@@ -567,6 +572,10 @@
                         type: Boolean,
                         value: false,
                         observer: 'observerCode'
+                    },
+                    modeCode: {
+                        type: String,
+                        observer: '_changeModeCode'
                     }
                 }
             })
