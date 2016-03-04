@@ -1,6 +1,6 @@
 <!--
  Webcomponents to manage custom textarea
- @version v0.0.7 - 2016-02-12
+ @version v0.0.8 - 2016-03-04
  @link https://github.com/gigigo-html5/gig-textarea
  @author Pedro José Peña Jerez <pedro.jose@gigigo.com>
  @license MIT License, http://www.opensource.org/licenses/MIT
@@ -369,8 +369,7 @@
                     'input': '_onInput'
                 },
                 _changeCode: function(e) {
-                    this.value = this.$.code.value;
-
+                    this.value = this.$.code.editor.getValue();
                 },
                 _getHeight: function(height) {
                     return 'height: '+height * 50 + 'px';
@@ -508,10 +507,6 @@
                     if (value)
                     this.$.code.value = this.value;
                 },
-                _changeModeCode: function(value) {
-
-
-                },
                 properties: {
                     name: {
                         type: String,
@@ -585,8 +580,7 @@
                         observer: 'observerCode'
                     },
                     modeCode: {
-                        type: String,
-                        observer: '_changeModeCode'
+                        type: String
                     }
                 }
             })

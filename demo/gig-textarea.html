@@ -362,8 +362,7 @@
                     'input': '_onInput'
                 },
                 _changeCode: function(e) {
-                    this.value = this.$.code.value;
-
+                    this.value = this.$.code.editor.getValue();
                 },
                 _getHeight: function(height) {
                     return 'height: '+height * 50 + 'px';
@@ -574,8 +573,7 @@
                         observer: 'observerCode'
                     },
                     modeCode: {
-                        type: String,
-                        observer: '_changeModeCode'
+                        type: String
                     }
                 }
             })

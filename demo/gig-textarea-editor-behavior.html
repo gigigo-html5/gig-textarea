@@ -31,7 +31,6 @@
         },
         _editorEvents: function() {
             var self = this;
-
             self.editorBlock.on('text-change', function(delta, source) {
                 self.value = self.editorBlock.getHTML();
             });
