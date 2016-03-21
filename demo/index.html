@@ -6,6 +6,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Gig Component fieldMap Demo</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <link rel="import" href="/demo/gig-textarea.html">
 
     <style is="custom-style">
@@ -13,19 +14,27 @@
             padding: 10px;
         }
 
+        .field label {
+            display: block;
+            font-family: sans-serif;
+        }
+
     </style>
 </head>
 <body>
     <div class="field">
+        <label>Textarea normal</label>
         <gig-textarea rows="3" maxlength="40" lang="es"></gig-textarea>
     </div>
 
     <div class="field">
-        <gig-textarea editor="true"rows="3" error-message="Campo Obligatorio" minlength="10" lang="en"></gig-textarea>
+        <label>Textarea with editor</label>
+        <gig-textarea editor="true" rows="3" error-message="Campo Obligatorio" minlength="10" lang="en"></gig-textarea>
     </div>
 
     <div class="field">
-        <gig-textarea code="true" mode-code="ace/mode/html" placeholder="Enter your code here" rows="4" value="<script>alert('pasa')</script>"></gig-texarea>
+        <label>Textarea with code</label>
+        <gig-textarea code="true" mode-code="ace/mode/html" placeholder="Enter your code here" rows="4"></gig-textarea>
     </div>
 
 

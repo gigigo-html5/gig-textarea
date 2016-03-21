@@ -1,6 +1,6 @@
 <!--
  Webcomponents to manage custom textarea
- @version v0.0.8 - 2016-03-04
+ @version v0.0.9 - 2016-03-21
  @link https://github.com/gigigo-html5/gig-textarea
  @author Pedro José Peña Jerez <pedro.jose@gigigo.com>
  @license MIT License, http://www.opensource.org/licenses/MIT
@@ -309,37 +309,37 @@
             </div>
 
         <div hidden$="[[code]]">
-        <textarea id="textarea"
-               rows=[[rows]]
-               autocomplete$="[[autocomplete]]"
-               required$="[[required]]"
-               placeholder$="[[placeholder]]"
-               readonly$="[[readonly]]"
-               disabled$="[[disabled]]"
-               minlength$="[[minlength]]"
-               maxlength$="[[maxlength]]"
-               min$="[[min]]"
-               max$="[[max]]"
-               step$="[[step]]"
-               name$="[[name]]"
-               readonly$="[[readonly]]"
-               type="{{typeFormat}}"
-               value="{{value}}"
-               hidden$="[[code]]"
-               class$="[[getClassList(errorMessage, resize)]] [[hideEditor(editor)]]"
-               on-keyup="keyupEvent"
-               on-focus="focusEvent"
-               on-blur="blurEvent"></textarea>
-           </div>
+            <textarea id="textarea"
+                   rows=[[rows]]
+                   autocomplete$="[[autocomplete]]"
+                   required$="[[required]]"
+                   placeholder$="[[placeholder]]"
+                   readonly$="[[readonly]]"
+                   disabled$="[[disabled]]"
+                   minlength$="[[minlength]]"
+                   maxlength$="[[maxlength]]"
+                   min$="[[min]]"
+                   max$="[[max]]"
+                   step$="[[step]]"
+                   name$="[[name]]"
+                   readonly$="[[readonly]]"
+                   type="{{typeFormat}}"
+                   value="{{value}}"
+                   hidden$="[[code]]"
+                   class$="[[getClassList(errorMessage, resize)]] [[hideEditor(editor)]]"
+                   on-keyup="keyupEvent"
+                   on-focus="focusEvent"
+                   on-blur="blurEvent"></textarea>
+       </div>
 
-               <div hidden$="[[!code]]">
-                   <juicy-ace-editor
-                       id="code"
-                       theme="ace/theme/monokai"
-                       on-change="_changeCode"
-                       style$="[[_getHeight(rows)]]">
-                   </juice-ace-editor>
-                </div>
+       <div hidden$="[[!code]]">
+           <juicy-ace-editor
+               id="code"
+               theme="ace/theme/monokai"
+               on-change="_changeCode"
+               style$="[[_getHeight(rows)]]">
+           </juice-ace-editor>
+        </div>
 
         <template is="dom-if" if="[[errorMessage]]">
             <div class="error small">[[errorMessage]]</div>
@@ -389,11 +389,9 @@
                     this._getValidity();
                     this.editorReady();
 
-                    if (this.code) {
+                    if (this.code && this.$.code.editor) {
                         this.$.code.editor.session.setMode(this.modeCode);
                     }
-
-
                 },
                 hideEditor: function(editor) {
                     if (editor) {
