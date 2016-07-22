@@ -1,6 +1,6 @@
 <!--
  Webcomponents to manage custom textarea
- @version v0.0.9 - 2016-07-22
+ @version v0.1.0 - 2016-07-22
  @link https://github.com/gigigo-html5/gig-textarea
  @author Pedro José Peña Jerez <pedro.jose@gigigo.com>
  @license MIT License, http://www.opensource.org/licenses/MIT
@@ -155,7 +155,7 @@
         theme="ace/theme/monokai"
         on-change="_changeCode"
         style$="[[_getHeight(rows)]]">
-        </juice-ace-editor>
+      </juicy-ace-editor>
     </div>
 
     <template is="dom-if" if="[[errorMessage]]">
@@ -374,6 +374,9 @@
             type: Boolean,
             notify: true
           },
+          minlength: {
+            type: Number
+          },
           resize: {
             type: Boolean,
             value: false
@@ -397,6 +400,19 @@
           },
           modeCode: {
             type: String
+          },
+          autocomplete: {
+            type: String,
+            value: 'off'
+          },
+          min: {
+            type: Number
+          },
+          max: {
+            type: Number
+          },
+          step: {
+            type: Number
           }
         }
       })
