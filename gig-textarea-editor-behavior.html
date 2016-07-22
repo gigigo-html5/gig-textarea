@@ -1,53 +1,64 @@
+<!--
+ Webcomponents to manage custom textarea
+ @version v0.0.9 - 2016-07-22
+ @link https://github.com/gigigo-html5/gig-textarea
+ @author Pedro José Peña Jerez <pedro.jose@gigigo.com>
+ @license MIT License, http://www.opensource.org/licenses/MIT
+
+ -->
 <link href="../polymer/polymer.html">
 <script src="../quill/dist/quill.js"></script>
 <link rel="stylesheet" href="quill.snow.css">
 
 <script>
+  /**
+   * description
+   * @polymerBehavior Polymer.GigInputDateBehavior
+   */
+  Polymer.GigTextareaEditorBehavior = {
+    enableEditor: function() {
 
-    Polymer.GigTextareaEditorBehavior = {
-        enableEditor: function() {
+      if (this.editorBlock) {
+        this.editorBlock.destroy();
+        this.editorBlock = null;
+      }
 
-            if (this.editorBlock) {
-                this.editorBlock.destroy();
-                this.editorBlock = null;
-            }
+      if (this.querySelector('#editor')) {
 
-            if (this.querySelector('#editor')) {
+        this.editorBlock = new Quill(this.querySelector('#editor'), {
+          modules: {
+            'toolbar': {container: this.querySelector('#toolbar')},
+            'link-tooltip': true
+          },
+          theme: 'snow'
+        });
+        this._editorEvents();
+        this.updateValue();
+      }
 
-                this.editorBlock = new Quill(this.querySelector('#editor'), {
-                  modules: {
-                    'toolbar': { container: this.querySelector('#toolbar') },
-                    'link-tooltip': true
-                  },
-                  theme: 'snow'
-                });
-                this._editorEvents();
-                this.updateValue();
-            }
+    },
+    updateValue: function() {
+      this.editorBlock.setHTML(this.value);
+    },
+    _editorEvents: function() {
+      var self = this;
 
-        },
-        updateValue: function() {
-            this.editorBlock.setHTML(this.value);
-        },
-        _editorEvents: function() {
-            var self = this;
-
-            self.editorBlock.on('text-change', function(delta, source) {
-                self.value = self.editorBlock.getHTML();
-            });
-        },
-        properties: {
-            editorMode: {
-                type: String,
-                value: 'basic'
-            },
-            editorHeight: {
-                type: Number,
-                value: 200
-            },
-            editorInstance: {
-                type: Object
-            }
-        }
+      self.editorBlock.on('text-change', function(delta, source) {
+        self.value = self.editorBlock.getHTML();
+      });
+    },
+    properties: {
+      editorMode: {
+        type: String,
+        value: 'basic'
+      },
+      editorHeight: {
+        type: Number,
+        value: 200
+      },
+      editorInstance: {
+        type: Object
+      }
     }
+  }
 </script>
