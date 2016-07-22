@@ -155,7 +155,7 @@
         theme="ace/theme/monokai"
         on-change="_changeCode"
         style$="[[_getHeight(rows)]]">
-        </juice-ace-editor>
+      </juicy-ace-editor>
     </div>
 
     <template is="dom-if" if="[[errorMessage]]">
@@ -374,6 +374,9 @@
             type: Boolean,
             notify: true
           },
+          minlength: {
+            type: Number
+          },
           resize: {
             type: Boolean,
             value: false
@@ -397,6 +400,19 @@
           },
           modeCode: {
             type: String
+          },
+          autocomplete: {
+            type: String,
+            value: 'off'
+          },
+          min: {
+            type: Number
+          },
+          max: {
+            type: Number
+          },
+          step: {
+            type: Number
           }
         }
       })
