@@ -1,6 +1,6 @@
 {
   "name": "gig-textarea",
-  "version": "0.0.3",
+  "version": "0.0.9",
   "homepage": "https://github.com/gigigo-html5/gig-textarea",
   "authors": [
     "Pedro Peña <pedro.jose@gigigo.com>"
@@ -14,10 +14,10 @@
     "tests"
   ],
   "dependencies": {
-    "ckeditor": "~4.5.3",
-    "iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#~1.0.4",
-    "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#~1.0.4",
-    "polymer": "~1.2.0",
-    "juicy-ace-editor": "~1.1.1"
+    "iron-form-element-behavior": "^1.0.6",
+    "iron-validatable-behavior": "^1.1.1",
+    "polymer": "^1.6.0",
+    "juicy-ace-editor": "^1.1.2",
+    "quill": "^0.20.1"
   }
 }

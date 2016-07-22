@@ -1,92 +1,56 @@
-<link href="../polymer/polymer.html">
-<script type="text/javascript">
-    var CKEDITOR_BASEPATH = location.pathname+'../ckeditor/';
-</script>
-
-<script src="../ckeditor/ckeditor.js"></script>
+<link href="../bower_components/polymer/polymer.html">
+<script src="../bower_components/quill/dist/quill.js"></script>
+<link rel="stylesheet" href="quill.snow.css">
 
 <script>
+  /**
+   * description
+   * @polymerBehavior Polymer.GigInputDateBehavior
+   */
+  Polymer.GigTextareaEditorBehavior = {
+    enableEditor: function() {
 
-    Polymer.GigTextareaEditorBehavior = {
-        enableEditor: function() {
-            var self = this;
+      if (this.editorBlock) {
+        this.editorBlock.destroy();
+        this.editorBlock = null;
+      }
 
-            CKEDITOR.replace(this.$.textarea, {
-                language: self.lang,
-                uiColor: '#F5F5F5',
-                toolbarGroups : self.getConfig(),
-                height: self.editorHeight
-            });
+      if (this.querySelector('#editor')) {
 
-            this.editorInstance = CKEDITOR.instances.textarea;
-            this._editorEvents();
-        },
-        _editorEvents: function() {
-            var self = this;
-            self.editorInstance.on( 'contentDom', function() {
-                var editable = self.editorInstance.editable();
-                editable.attachListener( editable, 'keyup', function() {
-                    var data = self.editorInstance.getData();
-                    self.$.textarea.value = data;
-                    self.value = data;
-                    self._checkMaxLength();
+        this.editorBlock = new Quill(this.querySelector('#editor'), {
+          modules: {
+            'toolbar': {container: this.querySelector('#toolbar')},
+            'link-tooltip': true
+          },
+          theme: 'snow'
+        });
+        this._editorEvents();
+        this.updateValue();
+      }
 
-                    if (self._getValidity()) {
-                        self.errorMessage = null;
-                    }
-                });
+    },
+    updateValue: function() {
+      this.editorBlock.setHTML(this.value);
+    },
+    _editorEvents: function() {
+      var self = this;
 
-                editable.attachListener( editable, 'focus', function() {
-                    self._checkMaxLength();
-                });
-
-                editable.attachListener( editable, 'blur', function() {
-                    self.maxLengthShow = false;
-                });
-
-                editable.attachListener(editable, 'keydown', function() {
-
-
-                    var str = self.editorInstance.getData().replace(/<[^>]*>|\s/g, '');
-                    if (str.length > self.maxlength) {
-                        self.editorInstance.setData(str.substring(0, self.maxlength));
-                    }
-                })
-            });
-        },
-        getConfig: function() {
-
-            switch(this.editorMode) {
-                case 'basic':
-                return [
-                		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-                		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-                		{ name: 'links', groups: [ 'links' ] },
-                		{ name: 'insert', groups: [ 'insert' ] },
-                		{ name: 'forms', groups: [ 'forms' ] },
-                		{ name: 'tools', groups: [ 'tools' ] },
-                		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-                		{ name: 'others', groups: [ 'others' ] },
-                		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-                		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-                		{ name: 'styles', groups: [ 'styles' ] },
-                		{ name: 'colors', groups: [ 'colors' ] }
-                	];
-                break;
-            }
-        },
-        properties: {
-            editorMode: {
-                type: String,
-                value: 'basic'
-            },
-            editorHeight: {
-                type: Number,
-                value: 200
-            },
-            editorInstance: {
-                type: Object
-            }
-        }
+      self.editorBlock.on('text-change', function(delta, source) {
+        self.value = self.editorBlock.getHTML();
+      });
+    },
+    properties: {
+      editorMode: {
+        type: String,
+        value: 'basic'
+      },
+      editorHeight: {
+        type: Number,
+        value: 200
+      },
+      editorInstance: {
+        type: Object
+      }
     }
+  }
 </script>

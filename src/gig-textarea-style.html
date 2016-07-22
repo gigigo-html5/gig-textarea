@@ -1,0 +1,199 @@
+<dom-module id="gig-textarea-style">
+  <template>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Roboto, sans-serif;
+        font-weight: 300;
+      }
+
+      textarea {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 6px 15px;
+        font-size: 14px;
+        line-height: 1.57142857;
+        color: var(--input-color-primary, #76838f);
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid var(--input-border-color, #e4eaec);
+        border-radius: 3px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        @apply(--input-style);
+      }
+
+      textarea:focus {
+        border-color: var(--input-border-color-focus, #62a8ea);
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(98, 168, 234, .6);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(98, 168, 234, .6);
+      }
+
+      textarea.focus,
+      textarea:focus {
+        border-color: var(--input-border-color-focus, #62a8ea);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+
+      textarea::-moz-placeholder {
+        color: var(--input-color-placeholder, #a3afb7);
+        opacity: 1;
+      }
+
+      textarea:-ms-input-placeholder {
+        color: var(--input-color-placeholder, #a3afb7);
+      }
+
+      textarea::-webkit-input-placeholder {
+        color: var(--input-color-placeholder, #a3afb7);
+      }
+
+      textarea::-ms-expand {
+        background-color: transparent;
+        border: 0;
+      }
+
+      textarea[disabled],
+      textarea[readonly] {
+        background-color: var(--input-background-color-disabled, #f3f7f9);
+        opacity: 1;
+      }
+
+      textarea.error {
+        border-color: var(--input-color-error, #f96868);
+      }
+
+      .error {
+        color: var(--input-color-error, #f96868);
+      }
+
+      div.error {
+        padding: 5px 0;
+      }
+
+      .small {
+        font-size: 85%;
+      }
+
+      .maxlength, .minlength {
+        float: right;
+        border-radius: 3px;
+        margin: 5px 0;
+        color: white;
+        font-weight: bold;
+        padding: 2px 5px;
+        font-size: 75%;
+        display: block
+      }
+
+      .minlength {
+        float: left;
+      }
+
+      .maxlength.success, .minlength.success {
+        background-color: var(--input-color-success, #46BE8A);
+      }
+
+      .maxlength.error, .minlength.error {
+        background-color: var(--input-color-error, #f96868);
+        color: white !important;
+      }
+
+      .no-resize {
+        resize: none;
+      }
+
+      .field {
+        padding: 5px 0;
+      }
+
+      .field:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+      }
+
+      .text-editor {
+        outline: none;
+        border: 1px solid #e4eaec;
+        color: #76838f;
+        border-radius: 3px;
+        background: #c8cdd2;
+      }
+
+      .text-editor #toolbar {
+        background: #f3f7f9;
+        border-radius: 3px 3px 0 0;
+        padding: 6px;
+      }
+
+      .text-editor button {
+        border: 0;
+        background: transparent;
+        color: #a3afb7;
+        cursor: pointer;
+        padding: 6px 13px;
+        font-size: 12px;
+        line-height: 1.5;
+        opacity: 0.6;
+        transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+        -webkit-transition: border .2s linear, color .2s linear, width .2s linear, background-color .2s linear;
+        -webkit-font-smoothing: subpixel-antialiased;
+      }
+
+      .text-editor button:hover {
+        color: #37474f;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .text-editor .btn-group {
+        position: relative;
+        margin-left: 20px;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 10px;
+      }
+
+      .text-editor .btn-group:first-child {
+        margin-left: 0;
+      }
+
+      .text-editor .btn-group:after {
+        position: absolute;
+        top: 2px;
+        left: -17px;
+        width: 2px;
+        height: 30px;
+        content: '';
+        background: #e4eaec;
+      }
+
+      .text-editor .btn-group:first-child:after {
+        display: none
+      }
+
+      .ql-tooltip {
+        border: none;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, .2);
+        border-radius: 4px;
+      }
+
+      juicy-ace-editor {
+        display: block;
+        position: relative;
+      }
+    </style>
+  </template>
+</dom-module>
