@@ -18,6 +18,7 @@
     "iron-validatable-behavior": "^1.1.1",
     "polymer": "^1.6.0",
     "juicy-ace-editor": "^1.1.2",
-    "quill": "^0.20.1"
+    "quill": "^0.20.1",
+    "font-awesome": "^4.6.3"
   }
 }
